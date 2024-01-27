@@ -1,0 +1,135 @@
+@startuml
+class logic.components.Monster {
+- String name
+- Status status
+- Food food
+- Potion potion
++ <<Create>> Monster(String,Status)
++ void attack(Player)
++ void magicAttack(Player)
++ String getName()
++ Status getStatus()
++ Food getFood()
++ Potion getPotion()
++ void setName(String)
++ void setFood(Food)
++ void setPotion(Potion)
++ void setStatus(Status)
+}
+class logic.components.Potion {
+- String name
+- int price
+- Status increasingStatus
++ <<Create>> Potion(String,int,Status)
++ boolean equals(Object)
++ String getName()
++ int getPrice()
++ Status getIncreasingStatus()
++ void setName(String)
++ void setPrice(int)
++ void setIncreasingStatus(Status)
+}
+class logic.components.Status {
+- int hp
+- int durability
+- int attack
+- int magic
++ <<Create>> Status(int,int,int,int)
++ void setHp(int)
++ void setDurability(int)
++ void setAttack(int)
++ void setMagic(int)
++ int getHp()
++ int getDurability()
++ int getAttack()
++ int getMagic()
++ boolean equals(Object)
++ void addStatus(Status)
+}
+class logic.components.Ore {
+- String name
+- int cost
++ <<Create>> Ore(String,int)
++ void setName(String)
++ void setCost(int)
++ String getName()
++ int getCost()
++ boolean equals(Object)
+}
+class logic.game.GameController {
++ ArrayList<Market> markets
++ ArrayList<Player> players
++ ArrayList<Monster> monsters
++ ArrayList<Ore> ores
++ {static} GameController instance
++ boolean gameEnd
++ <<Create>> GameController()
++ {static} GameController getInstance()
++ void addMarket(Market)
++ void addMonster(Monster)
++ void addPlayer(Player)
++ void endDay()
++ void removeDeadPlayerAndMonster()
++ boolean buyOre(int,int)
++ boolean checkGameEnd()
++ {static} Status createNewStatus(int,int,int,int)
+}
+class logic.components.Food {
+- String name
+- int price
+- int energy
++ <<Create>> Food(String,int,int)
++ void setName(String)
++ void setPrice(int)
++ void setEnergy(int)
++ String getName()
++ int getPrice()
++ int getEnergy()
++ boolean equals(Object)
++ int hashCode()
+}
+class logic.components.Player {
+- String name
+- Status status
+- int energy
+- int money
+- ArrayList<Food> foods
+- ArrayList<Potion> potions
+- ArrayList<Ore> ores
++ <<Create>> Player(String,Status)
++ <<Create>> Player(String,Status,int,int)
++ void setName(String)
++ void setStatus(Status)
++ void setEnergy(int)
++ void setMoney(int)
++ void setFoods(ArrayList<Food>)
++ void setPotions(ArrayList<Potion>)
++ void setOres(ArrayList<Ore>)
++ String getName()
++ Status getStatus()
++ int getEnergy()
++ int getMoney()
++ ArrayList<Potion> getPotions()
++ ArrayList<Food> getFoods()
++ ArrayList<Ore> getOres()
++ boolean buyOre(Ore)
++ void drinkPotion(int)
++ void eatFood(int)
++ void sellPotion(int)
++ void sellFood(int)
++ void attack(Monster)
++ void magicAttack(Monster)
+}
+class logic.components.Market {
+- String name
+- ArrayList<Food> foods
+- ArrayList<Potion> potions
++ <<Create>> Market(String)
++ void setName(String)
++ void setFoods(ArrayList<Food>)
++ void setPotions(ArrayList<Potion>)
++ String getName()
++ ArrayList<Food> getFoods()
++ ArrayList<Potion> getPotions()
+}
+@enduml
